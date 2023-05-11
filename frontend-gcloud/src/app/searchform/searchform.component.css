@@ -1,0 +1,62 @@
+label span {
+    color: red;
+}
+
+form {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+form label{
+    margin-bottom: 10px;
+}
+.formcontent{
+    margin: auto;
+}
+
+form .row {
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+form .row .col{
+    padding-left: 0%;
+    padding-right: 5%;
+}
+
+.container{
+    width: 50%;
+    min-width: 400px;
+    border: solid gainsboro 1px;
+    background: white;
+    border-radius: 15px;
+    position: relative;
+}
+
+.autoblock{
+    margin-top: 10px;
+    margin-left: 10%;
+}
+
+.btn{
+    margin-right: 5%;
+    color: white;
+    border: none;
+}
+
+.btn1:hover{
+    background-color: rgb(222, 78, 78);
+}
+.btn2:hover{
+    background-color:  rgb(88, 88, 217);
+}
+.btn1{
+    background-color: rgb(223, 54, 54);
+}
+.btn2{
+    background-color: rgb(69, 69, 220);
+}

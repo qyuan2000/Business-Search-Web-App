@@ -1,0 +1,170 @@
+
+<mat-card *ngIf="isVisible">
+    <mat-card-actions>
+        <button mat-button (click)="backClick()">&#8592;</button>
+    </mat-card-actions>
+    <mat-card-title>{{BusiName}}</mat-card-title>
+    <mat-tab-group mat-align-tabs="center">
+        <mat-tab label="Business details" >
+            <div class="row">
+                <div class="col mx-auto">
+                    <h3>Address</h3>
+                    <h4>{{BusiAddr}}</h4>
+                </div>
+                <div class="col mx-auto">
+                    <h3>Category</h3>
+                    <h4>{{BusiCate}}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mx-auto">
+                    <h3>Phone</h3>
+                    <h4>{{BusiPhone}}</h4>
+                </div>
+                <div class="col mx-auto">
+                    <h3>Price range</h3>
+                    <h4>{{BusiPrice}}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mx-auto">
+                    <h3>Status</h3>
+                    <h4 [style.color]=" BusiStat ? 'red' : 'green' ">{{BusiStat? "Closed":"Open now"}}</h4>
+                </div>
+                <div class="col mx-auto">
+                    <h3>Visit yelp for more</h3>
+                    <a [href]=BusiLink target="_blank"><h4>Business link</h4></a>
+                </div>
+            </div>
+            <div class="row">
+                <button mat-button class="reservebtn" [style.background-color]=" isReserved ? 'blue' : 'red' " (click)="reserveClick()">{{isReserved? "Cancel Reservation":"Reserve Now"}}</button>
+            </div>
+            <div class="row">
+                <div style="display: inline-block;margin-right: 5px;">
+                <div style="display: inline-block; margin-right: 5px;"><h4>Share on:</h4></div>
+                <a [href]=twitterUrl target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="rgb(38, 181, 237)" class="bi bi-twitter" viewBox="0 0 16 16" style="margin-left: 5px;">
+                        <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+                    </svg>
+                </a>
+                <a [href]=fbUrl target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="blue" class="bi bi-facebook" viewBox="0 0 16 16" style="margin-left: 5px;">
+                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+                    </svg>
+                </a>
+                </div>
+            </div>
+            <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item" *ngFor="let img of imglist;let isFirst = first" [ngClass]="{active:isFirst}">
+                        <img [src]=img class="d-block mx-auto">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </mat-tab>
+        <mat-tab label="Map location">
+            <div class="my-google-map">
+                <google-map [options]="mapOptions" width="100%">
+                    <map-marker [position]=mapmarker></map-marker>
+                </google-map>
+            </div>
+        </mat-tab>
+        <mat-tab label="Reviews">
+            <table class="table table-striped mx-auto">
+                <tbody>
+                <tr *ngFor="let review of reviewlist; let i = index">
+                    <td>
+                    <b>{{review.name}}</b><br/>
+                    {{review.rating}}
+                    <p> </p> 
+                    {{review.comment}}
+                    <p> </p> 
+                    {{review.date}}
+                    <p> </p> 
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </mat-tab>
+    </mat-tab-group>
+</mat-card>
+
+<!-- The Modal -->
+<div class="modal" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h3 class="modal-title">Reservation form</h3>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form class="mx-auto" [formGroup]="infoForm" (ngSubmit)="onSubmit()" novalidate>
+                <div class="col-sm text-center" style="margin-bottom: 5px;"><h5>{{BusiName}}</h5></div>
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+                <div *ngIf="infoForm.controls['email'].invalid && (infoForm.controls['email'].dirty || infoForm.controls['email'].touched)" class="alert">
+                    <div *ngIf="infoForm.controls['email'].errors?.['required']">
+                        <h6>Email is required</h6>
+                    </div>
+                    <div *ngIf="infoForm.controls['email'].errors?.['email']">
+                        <h6>Email must be a valid email address</h6>
+                    </div>
+                </div>
+
+                <label for="date">Date</label>
+                <input type="date" class="form-control" id="date" formControlName="date" placeholder="mm/dd/yyyy" min="{{todaydate | date:'yyyy-MM-dd'}}" required>
+                <div *ngIf="infoForm.controls['date'].invalid && (infoForm.controls['date'].dirty || infoForm.controls['date'].touched)" class="alert">
+                    <div *ngIf="infoForm.controls['date'].errors?.['required']">
+                        <h6>Date is required</h6>
+                    </div>
+                </div>
+
+                <label for="timehour">Time</label>
+                <div style="display: table;table-layout:fixed;">
+                    <div style="display: table-cell; width: 30%;">
+                    <select id="timehour" class="form-control" formControlName="timehour" required>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        <option>13</option>
+                        <option>14</option>
+                        <option>15</option>
+                        <option>16</option>
+                        <option>17</option>
+                    </select></div>
+                    
+                    <div style="display: table-cell; margin-right: 5px;">:</div>
+                    <div style="display: table-cell; width: 30%;">
+                    <select id="timeminute" class="form-control" formControlName="timeminute" required>
+                        <option>00</option>
+                        <option>15</option>
+                        <option>30</option>
+                        <option>45</option>
+                    </select></div>
+                    <div style="display: table-cell;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                      </svg>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <input type="submit" class="btn btn-info btn1 hover-overlay mx-auto" value="Submit">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+  

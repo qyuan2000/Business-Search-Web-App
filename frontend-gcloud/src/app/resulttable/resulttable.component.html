@@ -1,0 +1,21 @@
+<div *ngIf="noResult" class="noresultBlock">
+No results available
+</div>
+<table class="table table-striped mx-auto" *ngIf="isVisible">
+    <thead>
+        <th scope="col">#</th>
+        <th scope="col">Image</th>
+        <th scope="col">Business Name</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Distance (miles)</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let busi of busilist; let i = index" (click)="selectRow(i)">               
+            <td class="rowheader">{{ i + 1}} </td>
+            <td><img [src]="busi.imgurl" style="width: 100px; height: 100px;"></td>
+            <td>{{ busi.name }}</td>
+            <td>{{ busi.rating}}</td>   
+            <td>{{ busi.distance}}</td>    
+        </tr>  
+    </tbody>
+</table>

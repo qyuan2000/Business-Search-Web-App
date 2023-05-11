@@ -1,0 +1,52 @@
+<div class="container">
+<form class="mx-auto"
+  [formGroup]="infoForm"
+  (ngSubmit)="onSubmit()"
+  ngNativeValidate>
+    <div class="col-sm text-center">
+        <h3>Business search</h3>
+    </div>
+    <div class="formcontent">
+    <div class="row">
+        <label for="keyword">Keyword<span>*</span></label>
+        <input type="text" class="form-control" id="keyword" formControlName="keyword" required [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+            <ng-container *ngIf="!isLoading">
+            <mat-option *ngFor="let word of wordlist" [value]="word">
+              {{word}}
+            </mat-option>
+            </ng-container>
+        </mat-autocomplete>
+    </div>
+    <div class="row">
+        <div class="col ms-auto">
+            <label for="distance">Distance</label>
+            <input type="text" class="form-control" id="distance" formControlName="distance">
+        </div>
+        <div class="col">
+            <label for="category">Category<span>*</span></label>
+            <select class="form-select" id="category" formControlName="category" required>
+                <option>Default</option>
+                <option>Arts & Entertainment</option>
+                <option>Health & Medical</option>
+                <option>Hotels & Travel</option>
+                <option>Food</option>
+                <option>Professional Services</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <label for="location">Location<span>*</span></label>
+        <input type="text" class="form-control" id="location" formControlName="location" required>
+    </div>
+    <div class="autoblock">
+        <input type="checkbox" id="auto" value="yes" style="display: inline-block; margin-right: 5px;" formControlName="auto" unchecked>
+        <p style="display: inline-block;">Auto-detect my location</p>
+    </div>
+    <div class="text-center">
+        <input type="submit" class="btn btn-info btn1 hover-overlay" value="Submit">
+        <input type="button" class="btn  btn-info btn2 hover-overlay" (click)="resetForm()" value="Clear">
+    </div>
+    </div>
+</form>
+</div>

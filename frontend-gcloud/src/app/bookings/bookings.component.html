@@ -1,0 +1,28 @@
+<head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+<app-top-navbar></app-top-navbar>
+<div class="title" *ngIf="isVisible"><h1>List of your reservations</h1></div>
+<table class="table mx-auto" *ngIf="isVisible">
+    <thead>
+        <th scope="col">#</th>
+        <th scope="col">Business Name</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">Email</th>
+        <th scope="col"> </th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let reserve of reservelist; let i = index">               
+            <td class="rowheader"><b>{{ i + 1}}</b> </td>
+            <td>{{ reserve.name }}</td>
+            <td>{{ reserve.date }}</td>   
+            <td>{{ reserve.time}}</td>
+            <td>{{ reserve.email}}</td>
+            <td><button (click)="deleteRow(i)">
+                <i class="bi-trash" style="font-size:20px; background-color: white;"></i>
+            </button></td>
+        </tr>  
+    </tbody>
+</table>
+<div class="noresultblock mx-auto" *ngIf="noResult">No reservations to show</div>
