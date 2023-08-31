@@ -150,7 +150,7 @@ export class SearchformComponent implements OnInit {
   addr2loc(){
     let addressKey = this.infoForm.get("location")?.value;
     addressKey = addressKey?.trim().replace(', ', '+').replace(' ', '+').replace(',', '+');
-    let geocodeURL = "https://maps.googleapis.com/maps/api/geocode/json?address="+ addressKey +"&key=AIzaSyBAiwNn9j0MI7ukI604WxpCLAyeng3nt_8";
+    let geocodeURL = "https://maps.googleapis.com/maps/api/geocode/json?address="+ addressKey +"&key=";// add api key string from config file 
     this.http
     .get<any>(geocodeURL)
     .subscribe(data => {
