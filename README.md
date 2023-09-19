@@ -6,7 +6,7 @@ A node.js Express server that handles HTTP requests, integrating api calls to Ye
 A responsive web UI based on Angular framework, including homepage, search form, detail page, and reservation page.
 - Feature:
   1. Business search form and autocompletion
-     ![search_page](https://github.com/qyuan2000/Business-Search-Web-App/assets/65322077/e5a84185-37cc-4ced-ad3f-bad4435c6b79)
+     ![search_page](https://github.com/qyuan2000/Business-Search-Web-App/assets/65322077/e5a84185-37cc-4ced-ad3f-bad4435c6b79 | width=100)
      ![autocomplete](https://github.com/qyuan2000/Business-Search-Web-App/assets/65322077/23270f5e-b36b-4e13-8121-0072f17d3568)
 
 
